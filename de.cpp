@@ -50,10 +50,10 @@ int main(void)
 				for( int k = 1; k <= p_z; k++ )
 					Tnew.m[i][j][k] = T.m[i][j][k] + alpha * dt *
 				  	                (
-															( T.m[i+1][j][k] - 2*T.m[i][j][k] + T.m[i-1][j][k] ) / pow( dx, 2 ) +
-															( T.m[i][j+1][k] - 2*T.m[i][j][k] + T.m[i][j-1][k] ) / pow( dy, 2 ) +
-															( T.m[i][j][k+1] - 2*T.m[i][j][k] + T.m[i][j][k-1] ) / pow( dz, 2 )
-														);
+					                  	( T.m[i+1][j][k] - 2*T.m[i][j][k] + T.m[i-1][j][k] ) / pow( dx, 2 ) +
+						                  ( T.m[i][j+1][k] - 2*T.m[i][j][k] + T.m[i][j-1][k] ) / pow( dy, 2 ) +
+					                  	( T.m[i][j][k+1] - 2*T.m[i][j][k] + T.m[i][j][k-1] ) / pow( dz, 2 )
+					                  );
 		for( int i = 1; i <= p_x; i++ )
 			for( int j = 1; j <= p_y; j++)
 				for( int k = 1; k <= p_z; k++ )
