@@ -21,13 +21,15 @@ Domain::Domain ( int x, int y, int z )
       m[i][j].resize(p_z+2);
 	}
 
-	// Initializes m to gaussian form
+	// Initializes m to gaussian form + noise
 	for( int i = 0; i < p_x+2; i++ )
 		for( int j = 0; j < p_y+2; j++ )
 			for( int k = 0; k < p_z+2; k++ )
-				m[i][j][k] = 500*exp(-(pow(i-p_x/2,2)
-				                  + pow(j-p_y/2,2)
-													+ pow(k-p_z/2,2)));
+				m[i][j][k] = 500*exp(-(
+				                 pow(i-p_x/2,2)
+				               + pow(j-p_y/2,2)
+				               + pow(k-p_z/2,2)
+										 )) + rand()%5;
 	
 	// Sets Boundary Conditions
 	for( int i = 0; i < p_x+2; i++ )

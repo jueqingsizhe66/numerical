@@ -25,7 +25,7 @@ int main(void)
 	double alpha = .001; //4.2E-6;
 
 	// time step
-	double dt = 0.00005;
+	double dt = 0.0005;
 
 	// number of iterations
 	int nsteps = 100;
