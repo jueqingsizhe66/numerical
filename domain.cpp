@@ -1,16 +1,21 @@
 #include "header.h"
-using namespace std;
+
+using std::cout;
+using std::endl;
+using std::vector;
+using std::scientific;
 
 double BC( int x, int y, int z )
 {
 	return 0.0;
 }
 
-Domain::Domain ( int x, int y, int z )
+Domain::Domain ( Settings s )
 {
-	p_x = x;
-	p_y = y;
-	p_z = z;
+	settings = s;
+	p_x = settings.p_x;
+	p_y = settings.p_y;
+	p_z = settings.p_z;
 
 	// Sets m size. The +2 is for the boundary conditions
   m.resize(p_x+2);
@@ -59,4 +64,9 @@ void Domain::print( void )
 	}
 }
 
-
+Domain& Domain::operator= (const Domain& param)
+{
+	settings = param.settings;
+	m = param.m;
+	return *this;
+}
