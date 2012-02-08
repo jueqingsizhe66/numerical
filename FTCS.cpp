@@ -25,10 +25,7 @@ Domain FTCS( Domain T )
 					                  	( T.m[i][j][k+1] - 2*T.m[i][j][k] + T.m[i][j][k-1] )
 																/ pow( T.settings.dz, 2 )
 					                  );
-		for( int i = 1; i <= T.settings.p_x; i++ )
-			for( int j = 1; j <= T.settings.p_y; j++)
-				for( int k = 1; k <= T.settings.p_z; k++ )
-					T.m[i][j][k] = Tnew.m[i][j][k];
+		T = Tnew;
 	}
 	return T;
 }
