@@ -7,6 +7,7 @@ using std::cout;
 using std::endl;
 using std::ostream;
 using std::vector;
+using std::scientific;
 
 double BC( int x, int y, int z );
 
@@ -17,49 +18,24 @@ class Settings
 		double l_x;
 		double l_y;
 		double l_z;
-	
 		// Number of partitions, per direction
 		int p_x;
 		int p_y;
 		int p_z;
-
 		// Resulting delta sizes, per direction
 		double dx;
 		double dy;
 		double dz;
-	
 		// alpha for 340a Stainless Steel (m^2/s)
 		double alpha; //4.2E-6;
-
 		// time step
 		double dt;
-
 		// number of iterations
 		int nsteps;
 		
 		Settings() {};
-
-		void calculate_deltas(void)
-		{
-			dx = l_x / p_x;
-			dy = l_y / p_y;
-			dz = l_z / p_z;
-		};
-
-		void print(void)
-		{
-			cout << "Settings Summary" << endl;
-			cout << "----------------" << endl;
-			cout << "	Domain Boundaries (l_x, l_y, l_z): (";
-			cout << l_x << " " << l_y << " " << l_z << ")" << endl;
-			cout << "	Number of Partitions (p_x, p_y, p_z): (";
-			cout << p_x << " " << p_y << " " << p_z << ")" << endl;
-			cout << "	Deltas (dx, dy, dz): (";
-			cout << dx << " " << dy << " " << dz << ")" << endl;
-			cout << "	Alpha: " << alpha << endl;
-			cout << "	Timestep (dt): " << dt << endl;
-			cout << "	Number of Iterations:" << nsteps << endl;
-		}
+		void calculate_deltas(void);
+		void print(void);
 };
 
 class Domain

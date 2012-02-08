@@ -1,10 +1,11 @@
 #include "header.h"
 
+/*
 using std::cout;
 using std::endl;
 using std::vector;
 using std::scientific;
-
+*/
 double BC( int x, int y, int z )
 {
 	return 0.0;

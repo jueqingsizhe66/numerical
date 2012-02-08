@@ -1,7 +1,5 @@
 #include "header.h"
 
-using std::cout;
-
 int main(void)
 {
 	// All basic variables are stored in the Settings object.

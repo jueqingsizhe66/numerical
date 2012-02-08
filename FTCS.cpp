@@ -1,9 +1,5 @@
 #include "header.h"
 
-using std::cout;
-using std::endl;
-using std::vector;
-
 Domain FTCS( Domain T )
 {
 	Domain Tnew = T;
