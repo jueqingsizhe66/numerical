@@ -12,6 +12,7 @@ using std::scientific;
 double BC( int x, int y, int z );
 double dirichiletBC( int, int, int );
 double periodicBC( int, int, int, int, double );
+double sourceTerm( int, int, int);
 
 class Settings
 {
