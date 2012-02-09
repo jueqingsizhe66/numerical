@@ -36,7 +36,9 @@ int main(void)
 	// Initializes Domain
 	Domain T ( settings );
 	
-	FTCS( T );	
+	//FTCS( T );	
 	
+	CN( T );
+
 	return 0;
 }

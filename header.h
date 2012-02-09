@@ -56,6 +56,7 @@ class Domain
 };
 
 Domain FTCS( Domain T );
+Domain CN( Domain T );
 
 /*
 ostream & operator<<(ostream &out, const Settings &S)

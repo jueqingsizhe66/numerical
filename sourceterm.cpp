@@ -2,5 +2,5 @@
 
 double sourceTerm( int i, int j, int k )
 {
-	return 100.0;
+	return 0.1;
 }
