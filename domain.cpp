@@ -1,16 +1,5 @@
 #include "header.h"
 
-/*
-using std::cout;
-using std::endl;
-using std::vector;
-using std::scientific;
-*/
-double BC( int x, int y, int z )
-{
-	return 0.0;
-}
-
 Domain::Domain ( Settings s )
 {
 	settings = s;
@@ -37,16 +26,48 @@ Domain::Domain ( Settings s )
 				               + pow(k-p_z/2,2)
 										 )) + rand()%5;
 	
-	// Sets Boundary Conditions
+	// Intiailizes Boundary Conditions to a default value of 0;
+	// BC's will be set to their selected values when running
+	// a solver function, FTCS or Crank Nicholson.
 	for( int i = 0; i < p_x+2; i++ )
 		for( int j = 0; j < p_y+2; j++ )
 			for( int k = 0; k < p_z+2; k++ )
 				if( i == 0 || j == 0 || k == 0 || i == p_x+1 || j == p_y+1 || k == p_z+1 )
-					m[i][j][k] = BC(i, j, k);
+					m[i][j][k] = 0;
 }
 
-void Domain::print( void )
+void Domain::updateBC( int n )
 {
+	
+	if(settings.dirichilet == false)
+	{
+		for( int i = 0; i < p_x+2; i++ )
+			for( int j = 0; j < p_y+2; j++ )
+				for( int k = 0; k < p_z+2; k++ )
+				{
+					if( i == 0 || j == 0 || k == 0 || i == p_x+1 || j == p_y+1 || k == p_z+1 )
+					{	
+						m[i][j][k] = periodicBC( i, j, k, n, settings.dt );
+					}
+				}
+	}
+
+	else if( n == 0 )
+	{
+		for( int i = 0; i < p_x+2; i++ )
+			for( int j = 0; j < p_y+2; j++ )
+				for( int k = 0; k < p_z+2; k++ )
+				{	
+					if( i == 0 || j == 0 || k == 0 || i == p_x+1 || j == p_y+1 || k == p_z+1 )
+					{	
+						m[i][j][k] = dirichiletBC(i, j, k );
+					}
+				}
+	}
+}	
+
+void Domain::print( void )
+{	
 	cout << "Printing Domain" << endl;
 	cout << "Domain has the following dimensions: (";
 	cout << p_x << ", " << p_y << ", " << p_z << ")" << endl;

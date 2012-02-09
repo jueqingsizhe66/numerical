@@ -27,6 +27,9 @@ int main(void)
 	// number of iterations
 	settings.nsteps = 100;
 
+	// Boundary conditions
+	settings.dirichilet = true;
+
 	settings.print();
 	// Finished Initializing Settings.
 

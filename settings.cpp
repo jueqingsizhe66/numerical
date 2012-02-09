@@ -20,4 +20,10 @@ void Settings::print(void)
 	cout << "	Alpha: " << alpha << endl;
 	cout << "	Timestep (dt): " << dt << endl;
 	cout << "	Number of Iterations:" << nsteps << endl;
+	cout << "	Boundary Conditions: ";
+	if( dirichilet )
+		cout << "Dirichilet";
+	else
+		cout << "Periodic";
+	cout << endl;
 }

@@ -10,6 +10,8 @@ using std::vector;
 using std::scientific;
 
 double BC( int x, int y, int z );
+double dirichiletBC( int, int, int );
+double periodicBC( int, int, int, int, double );
 
 class Settings
 {
@@ -32,6 +34,8 @@ class Settings
 		double dt;
 		// number of iterations
 		int nsteps;
+		// Boundary Conditions
+		bool dirichilet;
 		
 		Settings() {};
 		void calculate_deltas(void);
@@ -45,6 +49,7 @@ class Domain
 		int p_x, p_y, p_z;
 		vector<vector<vector<double> > > m;
 		Domain( Settings );
+		void updateBC( int );
 		void print( void );
 		Domain& operator= (const Domain& param);
 };
