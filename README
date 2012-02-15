@@ -5,6 +5,9 @@ main.cpp file. Explanations for all the variables
 are included in main.cpp, so changing things should
 be fairly straight forward.
 
+I recommend a problem size of 100x100x100 for FTCS,
+and a problem size of 10x10x10 for CN. 
+
 	**Boundary Conditions**
 
 The boundary condition functions can be defined in

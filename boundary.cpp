@@ -10,7 +10,7 @@
 
 double dirichiletBC( int x, int y, int z )
 {
-	return 0;
+	return 0.0;
 }
 
 // The user can set their own spatially and temporally
