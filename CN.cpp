@@ -48,6 +48,14 @@ Domain CN( Domain T )
 	// Each entry is for the RHS of the respective AX=b equation.
 	// I need my notes for this.
 
+	
+	
+	// b has been initialized.
+
+	// Now I need to run gaussian elimination to determine the new x vector.
+
+	// After elimination, xnew vector must be fed into next iteration.
+
 	vector<double> xnew;
 
 
