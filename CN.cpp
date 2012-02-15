@@ -5,7 +5,6 @@ Domain CN( Domain T )
 	for( int it = 0; it < T.settings.nsteps; it++)
 	{
 		T.updateBC( it );
-		T.print();		
 		cout << "t = " << it << endl;
 		cout << "T[5][5][5] = " << T.m[5][5][5] << endl;
 		cout << "T[6][5][5] = " << T.m[6][5][5] << endl;
@@ -101,7 +100,7 @@ Domain CN( Domain T )
 					A[i][j] = 0;
 			}
 		}
-		
+/*		
 		// print upper left of A
 		for( int i = 0; i < 20; i++ )
 		{
@@ -115,7 +114,7 @@ Domain CN( Domain T )
 			}
 			cout << endl;
 		}
-
+*/
 		// Initialization of b
 		vector<double> b;
 		b.resize(length+1);
@@ -131,7 +130,7 @@ Domain CN( Domain T )
 			double term3 = C / pow(T.settings.dz,2) * (T.m[xs][ys][zs+1] - 2*T.m[xs][ys][zs] + T.m[xs][ys][zs-1]);
 			b[i] = T.m[xs][ys][zs] + term1 + term2 + term3;
 		}
-	
+
 		// GAUSSIAN ELIMINATION
 		cout << "Perfoming Gaussian Elimination..." << endl;
 		
@@ -140,7 +139,7 @@ Domain CN( Domain T )
 		for (int j=0;j<length;++j)           /* loop over columns */
 			for (int i=j+1;i<length;++i)      /* loop over rows beneath pivot */
 			{
-				for( int l = i+1; l < length; l++ ) // loop checks if there's a bigger pivot
+				/*for( int l = i+1; l < length; l++ ) // loop checks if there's a bigger pivot
 					if( A[i][j] < A[l][j] )      // and swaps rows if there is.
 					{	
 						for( int k = 0; k < length; k++ )
@@ -151,7 +150,7 @@ Domain CN( Domain T )
 							A[l][k] = tmp;
 						}
 						l = i;
-					}
+					}*/
 				if (A[i][j] != 0)
 				{
 					scale = A[i][j]/A[j][j];  /* zero out based on pivot */
@@ -174,7 +173,7 @@ Domain CN( Domain T )
 		}
 		
 		// SOLUTION CALCULATED - stored in x vector.
-
+		
 		// loads solution vector (x) back into the 3-D Domain
 		for( int i = 0; i < length ; i++ )
 		{
