@@ -1,5 +1,9 @@
 #include "header.h"
 
+// This file serves as the "control panel" for the program.
+
+// Simply change the desired variables, make, and run.
+
 int main(int argc, char* argv[])
 {
 	// All basic variables are stored in the Settings object.
@@ -18,8 +22,8 @@ int main(int argc, char* argv[])
 	// Resulting delta sizes, per direction
 	settings.calculate_deltas();
 	
-	// alpha for 340a Stainless Steel (m^2/s)
-	settings.alpha = .001; //4.2E-6;
+	// alpha
+	settings.alpha = .001;
 
 	// time step
 	settings.dt = 0.005;

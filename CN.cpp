@@ -18,16 +18,6 @@ Domain CN( Domain T )
 		int ys;
 		int zs;
 		int length = (T.settings.p_x) * (T.settings.p_y) * (T.settings.p_z);
-
-		// Initialization of x	
-		vector<double> x;
-		for( int i = 0; i < length ; i++ )
-		{
-			xs = i % T.settings.p_x + 1;
-			ys = ( i / T.settings.p_x ) % T.settings.p_y + 1;
-			zs = ( ( i / T.settings.p_x ) / T.settings.p_y ) % T.settings.p_z + 1;
-			x.push_back( T.m[xs][ys][zs] );
-		}
 		
 		// Creation of A
 		vector<vector<double> > A;
@@ -93,6 +83,12 @@ Domain CN( Domain T )
 					A[i][j] = 0;
 			}
 		}
+		
+
+		// Initialization of x	
+		vector<double> x;
+		x.resize(length);
+		
 /*		
 		// print upper left of A
 		for( int i = 0; i < 20; i++ )
@@ -108,7 +104,7 @@ Domain CN( Domain T )
 			cout << endl;
 		}
 */
-		// Initialization of b
+		// Initialization / Update of b
 		vector<double> b;
 		b.resize(length+1);
 
@@ -131,18 +127,6 @@ Domain CN( Domain T )
 		for (int j=0;j<length;++j)           /* loop over columns */
 			for (int i=j+1;i<length;++i)      /* loop over rows beneath pivot */
 			{
-				/*for( int l = i+1; l < length; l++ ) // loop checks if there's a bigger pivot
-					if( A[i][j] < A[l][j] )      // and swaps rows if there is.
-					{	
-						for( int k = 0; k < length; k++ )
-						{
-							// swaps rows
-							double tmp = A[i][k];
-							A[i][k] = A[l][k];
-							A[l][k] = tmp;
-						}
-						l = i;
-					}*/
 				if (A[i][j] != 0)
 				{
 					scale = A[i][j]/A[j][j];  /* zero out based on pivot */
@@ -163,6 +147,7 @@ Domain CN( Domain T )
 			}
 			x[i]/=A[i][i];
 		}
+
 		// SOLUTION CALCULATED - stored in x vector.
 		
 		// loads solution vector (x) back into the 3-D Domain

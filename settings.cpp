@@ -1,5 +1,9 @@
 #include "header.h"
 
+// settings class defintion.
+
+// To set variables / make changes, see main.cpp.
+
 void Settings::calculate_deltas(void)
 {
 	dx = l_x / p_x;

@@ -62,21 +62,3 @@ class Domain
 Domain FTCS( Domain T );
 Domain CN( Domain T );
 void show_sample( Domain T);
-
-/*
-ostream & operator<<(ostream &out, const Settings &S)
-{
-	out << "Settings Summary" << endl;
-	out << "----------------" << endl;
-	out << "	Domain Boundaries (l_x, l_y, l_z): (";
-	out << S.l_x << " " << S.l_y << " " << S.l_z << ")" << endl;
-	out << "	Number of Partitions (p_x, p_y, p_z): (";
-	out << S.p_x << " " << S.p_y << " " << S.p_z << ")" << endl;
-	out << "	Deltas (dx, dy, dz): (";
-	out << S.dx << " " << S.dy << " " << S.dz << ")" << endl;
-	out << "	Alpha: " << S.alpha << endl;
-	out << "	Timestep (dt): " << S.dt << endl;
-	out << "	Number of Iterations:" << S.nsteps << endl;
-	return out;
-}
-*/

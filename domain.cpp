@@ -16,7 +16,7 @@ Domain::Domain ( Settings s )
       m[i][j].resize(p_z+2);
 	}
 
-	// Initializes m to gaussian form + noise
+	// Initializes m to gaussian form +/- 1% random noise
 	for( int i = 0; i < p_x+2; i++ )
 		for( int j = 0; j < p_y+2; j++ )
 			for( int k = 0; k < p_z+2; k++ )
