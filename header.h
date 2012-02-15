@@ -59,6 +59,7 @@ class Domain
 
 Domain FTCS( Domain T );
 Domain CN( Domain T );
+void show_sample( Domain T);
 
 /*
 ostream & operator<<(ostream &out, const Settings &S)

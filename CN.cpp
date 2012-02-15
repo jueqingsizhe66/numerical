@@ -5,16 +5,9 @@ Domain CN( Domain T )
 	for( int it = 0; it < T.settings.nsteps; it++)
 	{
 		T.updateBC( it );
+		cout << endl;
 		cout << "t = " << it << endl;
-		cout << "T[5][5][5] = " << T.m[5][5][5] << endl;
-		cout << "T[6][5][5] = " << T.m[6][5][5] << endl;
-		cout << "T[4][5][5] = " << T.m[4][5][5] << endl;
-		cout << "T[5][6][5] = " << T.m[5][6][5] << endl;
-		cout << "T[5][4][5] = " << T.m[5][4][5] << endl;
-		cout << "T[5][5][6] = " << T.m[5][5][6] << endl;
-		cout << "T[5][5][4] = " << T.m[5][5][4] << endl;
-		cout << "Edge:         = " << T.m[0][0][0] << endl;
-		cout << "Inside Edge:  = " << T.m[1][1][1] << endl;
+		show_sample( T );	
 		
 		double C = T.settings.dt * T.settings.alpha / 2;
 		double diag = 1 + 2*C / pow(T.settings.dx, 2) + 2*C / pow(T.settings.dy,2) + 2*C/pow(T.settings.dz,2);
@@ -132,7 +125,6 @@ Domain CN( Domain T )
 		}
 
 		// GAUSSIAN ELIMINATION
-		cout << "Perfoming Gaussian Elimination..." << endl;
 		
 		// GE - upper-triangulate
 		double scale;
@@ -171,7 +163,6 @@ Domain CN( Domain T )
 			}
 			x[i]/=A[i][i];
 		}
-		cout << "x[0] = " << x[0] << endl;	
 		// SOLUTION CALCULATED - stored in x vector.
 		
 		// loads solution vector (x) back into the 3-D Domain
