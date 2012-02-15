@@ -4,24 +4,31 @@ Domain CN( Domain T )
 {
 	for( int it = 0; it < T.settings.nsteps; it++)
 	{
-		cout << "beginning iteration # " << it << endl;
 		T.updateBC( it );
-		cout << "BC updated..." << endl;
+		T.print();		
+		cout << "t = " << it << endl;
+		cout << "T[5][5][5] = " << T.m[5][5][5] << endl;
+		cout << "T[6][5][5] = " << T.m[6][5][5] << endl;
+		cout << "T[4][5][5] = " << T.m[4][5][5] << endl;
+		cout << "T[5][6][5] = " << T.m[5][6][5] << endl;
+		cout << "T[5][4][5] = " << T.m[5][4][5] << endl;
+		cout << "T[5][5][6] = " << T.m[5][5][6] << endl;
+		cout << "T[5][5][4] = " << T.m[5][5][4] << endl;
+		cout << "Edge:         = " << T.m[0][0][0] << endl;
+		cout << "Inside Edge:  = " << T.m[1][1][1] << endl;
+		
 		double C = T.settings.dt * T.settings.alpha / 2;
 		double diag = 1 + 2*C / pow(T.settings.dx, 2) + 2*C / pow(T.settings.dy,2) + 2*C/pow(T.settings.dz,2);
 		double xdiag = - C / pow(T.settings.dx,2);
 		double ydiag = - C / pow(T.settings.dy,2);
 		double zdiag = - C / pow(T.settings.dz,2);
-		
-		cout << "C and diags calculated..." << endl;
-
-		// First, we need to load our temperature domain into
-		// a vector format for x.
-		vector<double> x;
 		int xs;
 		int ys;
 		int zs;
 		int length = (T.settings.p_x) * (T.settings.p_y) * (T.settings.p_z);
+
+		// Initialization of x	
+		vector<double> x;
 		for( int i = 0; i < length ; i++ )
 		{
 			xs = i % T.settings.p_x + 1;
@@ -29,35 +36,88 @@ Domain CN( Domain T )
 			zs = ( ( i / T.settings.p_x ) / T.settings.p_y ) % T.settings.p_z + 1;
 			x.push_back( T.m[xs][ys][zs] );
 		}
-		// x has been initialized
-		cout << "x initalized..." << endl;
-		// Now I need to make A.
+		
+		// Creation of A
 		vector<vector<double> > A;
-		A.resize(length + 1);
-		for( int i = 1; i <= length; i++ )
+		A.resize(length);
+		for( int i = 0; i < length; i++ )
 		{
-			A[i].resize(length+1);
-			for( int j = 1; j <= length; j++ )
+			A[i].resize(length);
+			for( int j = 0; j < length; j++ )
 			{
 				if( i == j )
 					A[i][j] = diag;
-				else if( j == i - 9 || j == i + 9 ) // far back z (check on 7)
-					A[i][j] = zdiag;
-				else if( j == i - 3 || j == i + 3 ) // These don't take into account the 'sub-square' pattern effect
-					A[i][j] == ydiag;
-				else if( j == i - 1 || j == i + 1 ) // but I'll add that later...
-					A[i][j] = xdiag;
+				
+				// Z diagonals
+				else if( j == i - 9 ) // far back z (check on 7)
+				{
+					if( i < T.settings.p_x * T.settings.p_y )	
+						A[i][j] = 0;
+					else
+						A[i][j] = zdiag;
+				}
+			
+				else if( j == i + 9 )
+				{
+					if( i > length - T.settings.p_z )
+						A[i][j] = 0;
+					else
+						A[i][j] = zdiag;
+				}
+				
+				// Y diagonals
+				else if( j == i - 3 ) // These don't take into account the 'sub-square' pattern effect
+				{
+					if( ( i / T.settings.p_x ) % T.settings.p_y == 0 )
+						A[i][j] = 0;
+					else
+						A[i][j] = ydiag;
+				}
+				
+				else if( j == i + 3 )
+				{
+					if( ( i / T.settings.p_x ) % T.settings.p_y == T.settings.p_y - 1 )
+						A[i][j] = 0 ;
+					else
+						A[i][j] = ydiag;	
+				}
+				
+				// X diagonals
+				else if( j == i - 1 ) // but I'll add that later...
+				{	
+					if( i % T.settings.p_x == 0 )
+						A[i][j] = 0;
+					else
+						A[i][j] = xdiag;
+				}
+				else if( j == i + 1 )
+				{
+					if( i % T.settings.p_x == T.settings.p_x - 1 )
+						A[i][j] = 0;
+					else
+						A[i][j] = xdiag;
+				}
 				else
 					A[i][j] = 0;
 			}
 		}
-		// A has now been created.
-		cout << "A created..." << endl;		
-		// Now I need to calculate the inital b.
-		// Each entry is for the RHS of the respective AX=b equation.
-		// I need my notes for this.
+		
+		// print upper left of A
+		for( int i = 0; i < 20; i++ )
+		{
+			if( i % 10 == 0)
+				cout << endl;	
+			for( int j = 0; j < 20; j++ )
+			{
+				if( j % 10 == 0 )
+					cout << "  ";
+				cout << setw(9) <<  A[i][j] <<" ";		
+			}
+			cout << endl;
+		}
 
-		vector<double> b; // to initialize it to the right size
+		// Initialization of b
+		vector<double> b;
 		b.resize(length+1);
 
 		for( int i = 0; i < length; i++ )
@@ -71,14 +131,11 @@ Domain CN( Domain T )
 			double term3 = C / pow(T.settings.dz,2) * (T.m[xs][ys][zs+1] - 2*T.m[xs][ys][zs] + T.m[xs][ys][zs-1]);
 			b[i] = T.m[xs][ys][zs] + term1 + term2 + term3;
 		}
-		// b has been initialized.
-		cout << "b has been initialized" << endl;
-		// Now I need to run gaussian elimination to determine the new x vector.
-
-
-	// GAUSSIAN ELIMINATION
-
-	//upper-triangulate -- NEED TO CHECK THE # OF ITERATIONS...
+	
+		// GAUSSIAN ELIMINATION
+		cout << "Perfoming Gaussian Elimination..." << endl;
+		
+		// GE - upper-triangulate
 		double scale;
 		for (int j=0;j<length;++j)           /* loop over columns */
 			for (int i=j+1;i<length;++i)      /* loop over rows beneath pivot */
@@ -103,13 +160,11 @@ Domain CN( Domain T )
 					b[i] = b[i] - b[j]*scale; /* same for b */
 				}
 			}
-	cout << "Upper Triangulate complete..." << endl;		
-	// Back substitution
+		
+		// GE - Back substitution
 		x[length-1] = b[length-1]/A[length-1][length-1];
-		cout << "starting backsub..." << endl;
 		for (int i=length-2;i>0;--i)
 		{
-			cout << "i = " << i << endl;
 			x[i] = b[i];
 			for (int j=i+1;j<length;++j)
 			{
@@ -117,10 +172,10 @@ Domain CN( Domain T )
 			}
 			x[i]/=A[i][i];
 		}
-		cout << "backsub complete..." << endl;
-		// After elimination, xnew vector must be fed into next iteration.
+		
+		// SOLUTION CALCULATED - stored in x vector.
 
-		// loads solution vector (x) back into the Domain object
+		// loads solution vector (x) back into the 3-D Domain
 		for( int i = 0; i < length ; i++ )
 		{
 			xs = i % T.settings.p_x + 1;
@@ -131,5 +186,4 @@ Domain CN( Domain T )
 
 	}
 	return T;
-
 }

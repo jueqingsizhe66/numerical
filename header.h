@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include <vector>
 #include <cmath>
 #include <stdlib.h>
@@ -8,6 +9,7 @@ using std::endl;
 using std::ostream;
 using std::vector;
 using std::scientific;
+using std::setw;
 
 double BC( int x, int y, int z );
 double dirichiletBC( int, int, int );
