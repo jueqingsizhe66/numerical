@@ -2,11 +2,17 @@
 
 Domain FTCS( Domain T )
 {
+	cout << endl << "Iterating domain using FTCS method..." << endl;
 	Domain Tnew = T;
 	Tnew.updateBC(0);
 	T.updateBC(0);
 	for( int n = 0; n < T.settings.nsteps; n++ )
 	{
+		// Starting timer...
+		clock_t start, end;
+		double cpu_time_used;
+		start = clock();
+
 		T.updateBC(n);
 		cout << endl;
 		cout << "t = " << n << endl;
@@ -27,6 +33,13 @@ Domain FTCS( Domain T )
 					                + sourceTerm( i, j, k );
 
 		T = Tnew;
+		
+		// Ending timer...
+		end = clock();
+		cpu_time_used = ( (double) (end - start ) ) / CLOCKS_PER_SEC;
+		cout << "Iterating Domain of dimension "<<T.settings.p_x<<"x";
+		cout << T.settings.p_y<<"x"<<T.settings.p_z<<" took ";
+		cout << cpu_time_used<<" seconds."<<endl;
 	}
 	return T;
 }

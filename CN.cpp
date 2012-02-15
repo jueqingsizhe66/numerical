@@ -2,8 +2,14 @@
 
 Domain CN( Domain T )
 {
+	cout << endl << "Iterating domain using CN method..."<<endl;
 	for( int it = 0; it < T.settings.nsteps; it++)
 	{
+		// Starting timer...
+		clock_t start, end;
+		double cpu_time_used;
+		start = clock();
+		
 		T.updateBC( it );
 		cout << endl;
 		cout << "t = " << it << endl;
@@ -158,6 +164,13 @@ Domain CN( Domain T )
 			zs = ( ( i / T.settings.p_x ) / T.settings.p_y ) % T.settings.p_z + 1;
 			T.m[xs][ys][zs] = x[i];
 		}
+		
+		// Ending timer...
+		end = clock();
+		cpu_time_used = ( (double) (end - start ) ) / CLOCKS_PER_SEC;
+		cout << "Iterating Domain of dimension "<<T.settings.p_x<<"x";
+		cout << T.settings.p_y<<"x"<<T.settings.p_z<<" took ";
+		cout << cpu_time_used<<" seconds."<<endl;
 
 	}
 	return T;

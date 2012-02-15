@@ -2,6 +2,7 @@
 #include <iomanip>
 #include <vector>
 #include <cmath>
+#include <time.h>
 #include <stdlib.h>
 #include <string>
 
