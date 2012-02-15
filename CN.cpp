@@ -11,11 +11,43 @@ Domain CN( Domain T )
 	// First, we need to load our temperature domain into
 	// a vector format for x.
 	vector<double> x;
-	for( int i = 1; i < (T.settings.p_x + 2) * (T.settings.p_y+2) * (T.settings.p_z+2); i++ )
+	int xs;
+	int ys;
+	int zs;
+	int length = (T.settings.p_x + 2) * (T.settings.p_y+2) * (T.settings.p_z+2);
+	for( int i = 1; i <= length ; i++ )
 	{
-		x.push_back( T.m[i%p_x][(i/p_x)%p_y][((i/p_x)%p_y)%p_z] );
+		xs = i % p_x;
+		ys = ( i / p_x ) % p_y;
+		zs = ( ( i / p_x ) / p_y ) % p_z;
+		x.push_back( T.m[xs][ys][zs] );
 	}
+	// x has been initialized
+
+	// Now I need to make A.
+	vector<vector<double> > A;
+	for( int i = 1; i <= length; i++ )
+	{
+		for( int j = 1; j <= length; j++ )
+		{
+			if( i == j )
+				A[i][j] = diag;
+			else if( j == i - 7 || j == i + 7 ) // far back z (check on 7)
+				A[i][j] = zdiag;
+			else if( j == i - 3 || j == i + 3 ) // These don't take into account the 'sub-square' pattern effect
+				A[i][j] == ydiag;
+			else if( j == i - 1 || j == i + 1 ) // but I'll add that later...
+				A[i][j] = xdiag;
+			else
+				A[i][j] = 0;
+		}
+	}
+	// A has now been created.
 	
+	// Now I need to calculate the inital b.
+	// Each entry is for the RHS of the respective AX=b equation.
+	// I need my notes for this.
+
 	vector<double> xnew;
 
 
