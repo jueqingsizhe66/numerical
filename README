@@ -1,0 +1,4 @@
+Changing variables and settings can be done in the
+main.cpp file.
+
+Compilation is done using the included Makefile.

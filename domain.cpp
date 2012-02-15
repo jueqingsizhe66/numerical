@@ -24,7 +24,7 @@ Domain::Domain ( Settings s )
 				                 pow(i-p_x/2,2)
 				               + pow(j-p_y/2,2)
 				               + pow(k-p_z/2,2)
-										 )) + rand()%5;
+										 )) * (0.99 + (rand()%3) / 100.0 );
 	
 	// Intiailizes Boundary Conditions to a default value of 0;
 	// BC's will be set to their selected values when running

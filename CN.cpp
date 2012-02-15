@@ -44,18 +44,18 @@ Domain CN( Domain T )
 			A[i].resize(length);
 			for( int j = 0; j < length; j++ )
 			{
+				// Main diagonal
 				if( i == j )
 					A[i][j] = diag;
 				
 				// Z diagonals
-				else if( j == i - 9 ) // far back z (check on 7)
+				else if( j == i - 9 )
 				{
 					if( i < T.settings.p_x * T.settings.p_y )	
 						A[i][j] = 0;
 					else
 						A[i][j] = zdiag;
 				}
-			
 				else if( j == i + 9 )
 				{
 					if( i > length - T.settings.p_z )
@@ -65,14 +65,13 @@ Domain CN( Domain T )
 				}
 				
 				// Y diagonals
-				else if( j == i - 3 ) // These don't take into account the 'sub-square' pattern effect
+				else if( j == i - 3 )
 				{
 					if( ( i / T.settings.p_x ) % T.settings.p_y == 0 )
 						A[i][j] = 0;
 					else
 						A[i][j] = ydiag;
 				}
-				
 				else if( j == i + 3 )
 				{
 					if( ( i / T.settings.p_x ) % T.settings.p_y == T.settings.p_y - 1 )
@@ -82,7 +81,7 @@ Domain CN( Domain T )
 				}
 				
 				// X diagonals
-				else if( j == i - 1 ) // but I'll add that later...
+				else if( j == i - 1 )
 				{	
 					if( i % T.settings.p_x == 0 )
 						A[i][j] = 0;
@@ -96,6 +95,7 @@ Domain CN( Domain T )
 					else
 						A[i][j] = xdiag;
 				}
+
 				else
 					A[i][j] = 0;
 			}
@@ -128,7 +128,7 @@ Domain CN( Domain T )
 			double term1 = C / pow(T.settings.dx,2) * (T.m[xs+1][ys][zs] - 2*T.m[xs][ys][zs] + T.m[xs-1][ys][zs]);
 			double term2 = C / pow(T.settings.dy,2) * (T.m[xs][ys+1][zs] - 2*T.m[xs][ys][zs] + T.m[xs][ys-1][zs]);
 			double term3 = C / pow(T.settings.dz,2) * (T.m[xs][ys][zs+1] - 2*T.m[xs][ys][zs] + T.m[xs][ys][zs-1]);
-			b[i] = T.m[xs][ys][zs] + term1 + term2 + term3;
+			b[i] = T.m[xs][ys][zs] + term1 + term2 + term3 + sourceTerm(xs, ys, zs);
 		}
 
 		// GAUSSIAN ELIMINATION
@@ -162,7 +162,7 @@ Domain CN( Domain T )
 		
 		// GE - Back substitution
 		x[length-1] = b[length-1]/A[length-1][length-1];
-		for (int i=length-2;i>0;--i)
+		for (int i=length-2;i>=0;--i)
 		{
 			x[i] = b[i];
 			for (int j=i+1;j<length;++j)
@@ -171,7 +171,7 @@ Domain CN( Domain T )
 			}
 			x[i]/=A[i][i];
 		}
-		
+		cout << "x[0] = " << x[0] << endl;	
 		// SOLUTION CALCULATED - stored in x vector.
 		
 		// loads solution vector (x) back into the 3-D Domain

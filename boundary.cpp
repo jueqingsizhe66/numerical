@@ -2,7 +2,7 @@
 
 double dirichiletBC( int x, int y, int z )
 {
-	return 100;
+	return 0;
 }
 
 double periodicBC( int x, int y, int z, int n, double dt )
