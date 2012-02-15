@@ -1,5 +1,9 @@
 #include "header.h"
 
+// Note - BC functions are only called on boundary
+// points. i.e., the below functions will never
+// receive a non-boundary point.
+
 // The user can set their own spatially dependent
 // dirichilet (constant) boundary condition in the
 // dirichiletBC() function below.
