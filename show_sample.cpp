@@ -1,5 +1,17 @@
 #include "header.h"
 
+// I use the show_sample function to keep track of whats
+// going on in the domain after each iteration. I find
+// that this implementation is much simpler and faster
+// than exporting/importing to matlab. It accomplishes
+// the same thing. While I don't get the entire view of
+// the system with these sample points, I get everything
+// I need to make sure its working correctly.
+//
+// Essentially, if the system is working correctly in the
+// core and at the edges, there's (virtually) no possible
+// way the intermediate section isn't behaving as expected.
+
 void show_sample( Domain T )
 {
 		int x = T.settings.p_x / 2;

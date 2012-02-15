@@ -3,6 +3,7 @@
 #include <vector>
 #include <cmath>
 #include <stdlib.h>
+#include <string>
 
 using std::cout;
 using std::endl;
@@ -10,6 +11,7 @@ using std::ostream;
 using std::vector;
 using std::scientific;
 using std::setw;
+using std::string;
 
 double BC( int x, int y, int z );
 double dirichiletBC( int, int, int );

@@ -1,6 +1,6 @@
 #include "header.h"
 
-int main(void)
+int main(int argc, char* argv[])
 {
 	// All basic variables are stored in the Settings object.
 	Settings settings;
@@ -36,15 +36,20 @@ int main(void)
 	// Initializes Domain
 	Domain T ( settings );
 	
-	// Runs a solver on the Domain.
-	// 	1 for FTCS
-	// 	2 for Crank-Nicolson
-	int solver = 2;
-
-	if( solver == 1 )
-		FTCS(T);
+	// Solver selection - runs the selected solver on Domain.
+	// 	Default is FTCS
+	// 	Command line argument "-CN" is for Crank-Nocolson
+	if( argc > 1 )
+	{
+		string s = "-CN";
+		if( s.compare( argv[1] ) == 0 )
+		{	
+			CN(T);
+			return 0;
+		}
+	}
 	else
-		CN(T);
+		FTCS(T);
 	
 	return 0;
 }

@@ -1,4 +1,53 @@
-Changing variables and settings can be done in the
-main.cpp file.
+SETUP
+
+Basic variables and settings can be altered in the
+main.cpp file. Explanations for all the variables 
+are included in main.cpp, so changing things should
+be fairly straight forward.
+
+	**Boundary Conditions**
+
+The boundary condition functions can be defined in
+the boundary.cpp file. The dirichilet and periodic
+conditions can be set here. The dirichilet function
+takes the x,y,z coordinates as input, and returns
+the temperature. (i.e., it supports spatial
+dependency). The periodic function takes x,y,z 
+coordinates as input, along with the iteration that
+the solver is at as well as dt, and returns the
+temperature. (i.e., it supports both spatial and
+temporal dependencies).
+
+By default, the dirichilet BC is 0 everywhere.
+The periodic condition defaults to 1000*dt*n.
+
+Once defined, choice of BC type is done in main.cpp.
+See main.cpp for details.
+
+	**Source Terms**
+
+The source term function can be defined in
+the sourceterm.cpp file. The source term function
+takes the x,y,z coordinates as input, and returns
+the temperature. (i.e., it supports spatial
+dependency). 
+
+By default, the source term is set to 0.01.
+This is enough (using the other default settings)
+to keep the system at steady state (in the very
+long term), but not so high as to cause the system
+to blow up.
+
+COMPILATION
 
 Compilation is done using the included Makefile.
+
+RUNTIME
+
+To run the code using the FTCS solver, use:
+
+./solver
+
+To run the code using the CN solver, use:
+
+./solver -CN
