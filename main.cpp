@@ -15,9 +15,9 @@ int main(int argc, char* argv[])
 	settings.l_z = 1;
 	
 	// Number of partitions, per direction
-	settings.p_x = 20;
-	settings.p_y = 20;
-	settings.p_z = 20;
+	settings.p_x = 10;
+	settings.p_y = 10;
+	settings.p_z = 10;
 
 	// Resulting delta sizes, per direction
 	settings.calculate_deltas();
@@ -29,9 +29,12 @@ int main(int argc, char* argv[])
 	settings.dt = 0.005;
 
 	// number of iterations
-	settings.nsteps = 100;
+	settings.nsteps = 1000;
 
 	// Boundary conditions
+	// Set dirichilet to true for dirichilet conditions
+	// Set dirichilet to false for periodic condtions
+	// **NOTE** - BC functions can be defined in boundary.cpp
 	settings.dirichilet = true;
 
 	settings.print();
