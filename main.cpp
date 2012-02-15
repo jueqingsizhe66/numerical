@@ -11,9 +11,9 @@ int main(void)
 	settings.l_z = 1;
 	
 	// Number of partitions, per direction
-	settings.p_x = 100;
-	settings.p_y = 100;
-	settings.p_z = 100;
+	settings.p_x = 10;
+	settings.p_y = 10;
+	settings.p_z = 10;
 
 	// Resulting delta sizes, per direction
 	settings.calculate_deltas();
