@@ -28,7 +28,7 @@ int main(int argc, char* argv[])
 	settings.alpha = .001;
 
 	// time step
-	settings.dt = 0.0005;
+	settings.dt = 0.005;
 
 	// number of iterations
 	settings.nsteps = 100;

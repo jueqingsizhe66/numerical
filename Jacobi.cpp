@@ -22,6 +22,7 @@ Domain Jacobi( Domain T )
 	double Cx = ( T.settings.alpha * T.settings.dt ) / pow( T.settings.dx, 2 );
 	double Cy = ( T.settings.alpha * T.settings.dt ) / pow( T.settings.dy, 2 );
 	double Cz = ( T.settings.alpha * T.settings.dt ) / pow( T.settings.dz, 2 );
+	cout << "Cx, Cy, Cz = " << Cx<< " "<< Cy<< " "<< Cz<< endl;
 
 	for( int n = 1; n < T.settings.nsteps; n++ )
 	{
@@ -36,7 +37,9 @@ Domain Jacobi( Domain T )
 						Tnew.m[i][j][k] = Cx / ( 6 * Cx + 1 ) * ( T.m[i-1][j][k] + T.m[i+1][j][k] )
 														+ Cy / ( 6 * Cy + 1 ) * ( T.m[i][j-1][k] + T.m[i][j+1][k] )	
 														+ Cz / ( 6 * Cz + 1 ) * ( T.m[i][j][k-1] + T.m[i][j][k+1] )
-														+ Told.m[i][j][k] * ( 1 / (6*Cx + 1) + 1 / (6*Cy + 1) + 1 / (6*Cz + 1) )
+														+ Told.m[i][j][k] / ( 2 * T.settings.alpha * T.settings.dt *
+														  ( 1/pow(T.settings.dx,2) + 1/pow(T.settings.dy,2) + 1/pow(T.settings.dz,2) )
+															+ 1 )
 														+ sourceTerm( i, j, k );
 			
 			mean = 0;
