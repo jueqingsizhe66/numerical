@@ -18,6 +18,10 @@ double BC( int x, int y, int z );
 double dirichiletBC( int, int, int );
 double periodicBC( int, int, int, int, double );
 double sourceTerm( int, int, int);
+vector<double> mat_mult( vector<vector<double> > A, vector<double> B );
+vector<double> vec_add( vector<double> a, vector<double> b );
+vector<vector<double> > mat_sub( vector<vector<double> > A, vector<vector<double> > B );
+vector<vector<double> > mat_mat_mult( vector<vector<double> > A, vector<vector<double> > B );
 
 class Settings
 {
@@ -62,4 +66,5 @@ class Domain
 
 Domain FTCS( Domain T );
 Domain CN( Domain T );
+Domain Jacobi( Domain T );
 void show_sample( Domain T);

@@ -17,9 +17,9 @@ int main(int argc, char* argv[])
 	// PROBLEM SIZE - for cubic domain of size n, set
 	// n = p_x = p_y = p_z	
 	// Number of partitions, per direction
-	settings.p_x = 10;
-	settings.p_y = 10;
-	settings.p_z = 10;
+	settings.p_x = 100;
+	settings.p_y = 100;
+	settings.p_z = 100;
 
 	// Resulting delta sizes, per direction
 	settings.calculate_deltas();
@@ -28,7 +28,7 @@ int main(int argc, char* argv[])
 	settings.alpha = .001;
 
 	// time step
-	settings.dt = 0.005;
+	settings.dt = 0.0005;
 
 	// number of iterations
 	settings.nsteps = 100;
@@ -54,6 +54,13 @@ int main(int argc, char* argv[])
 		if( s.compare( argv[1] ) == 0 )
 		{	
 			CN(T);
+			return 0;
+		}
+		
+		s = "-Jacobi";
+		if( s.compare( argv[1] ) == 0 )
+		{
+			Jacobi(T);
 			return 0;
 		}
 	}
