@@ -24,6 +24,7 @@ Domain GS( Domain T )
 
 	for( int n = 1; n < T.settings.nsteps; n++ )
 	{
+		cout << endl<< "t = "<<n<<endl;
 		T = Told;
 		int iter;
 		double mean;
