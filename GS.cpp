@@ -3,10 +3,6 @@
 Domain GS( Domain T )
 {
 	cout << endl << "Iterating domain using Gauss-Seidel method..."<<endl;
-	// Starting timer...
-	clock_t start, end;
-	double cpu_time_used;
-	start = clock();
 
 	int MAX_ITER = 1000;	
 	cout << endl;
@@ -24,6 +20,12 @@ Domain GS( Domain T )
 
 	for( int n = 1; n < T.settings.nsteps; n++ )
 	{
+		// Starting timer...
+		clock_t start, end;
+		double cpu_time_used;
+		start = clock();
+		
+		
 		cout << endl<< "t = "<<n<<endl;
 		T = Told;
 		int iter;
@@ -56,14 +58,16 @@ Domain GS( Domain T )
 		Told = T;
 		Told.updateBC(n);
 		show_sample( T );
+		
+		
+		// Ending timer...
+		end = clock();
+		cpu_time_used = ( (double) (end - start ) ) / CLOCKS_PER_SEC;
+		cout << "Iterating Domain of dimension "<<T.settings.p_x<<"x";
+		cout << T.settings.p_y<<"x"<<T.settings.p_z<<" took ";
+		cout << cpu_time_used<<" seconds."<<endl;
 	}
 
-	// Ending timer...
-	end = clock();
-	cpu_time_used = ( (double) (end - start ) ) / CLOCKS_PER_SEC;
-	cout << "Iterating Domain of dimension "<<T.settings.p_x<<"x";
-	cout << T.settings.p_y<<"x"<<T.settings.p_z<<" took ";
-	cout << cpu_time_used<<" seconds."<<endl;
 
 	return T;
 }

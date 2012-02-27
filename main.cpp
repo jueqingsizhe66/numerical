@@ -17,9 +17,9 @@ int main(int argc, char* argv[])
 	// PROBLEM SIZE - for cubic domain of size n, set
 	// n = p_x = p_y = p_z	
 	// Number of partitions, per direction
-	settings.p_x = 50;
-	settings.p_y = 50;
-	settings.p_z = 50;
+	settings.p_x = 10;
+	settings.p_y = 10;
+	settings.p_z = 10;
 
 	// Resulting delta sizes, per direction
 	settings.calculate_deltas();
@@ -31,7 +31,7 @@ int main(int argc, char* argv[])
 	settings.dt = 0.005;
 
 	// number of iterations
-	settings.nsteps = 100;
+	settings.nsteps = 10;
 
 	// Boundary conditions
 	// Set dirichilet to true for dirichilet conditions
