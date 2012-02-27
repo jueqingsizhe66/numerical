@@ -53,7 +53,7 @@ Domain GS( Domain T )
 		}
 		cout << "iterations: "<<iter<<" error: "<<mean<<endl;
 		Told = T;
-		T.updateBC(n);
+		Told.updateBC(n);
 		show_sample( T );
 	}
 
