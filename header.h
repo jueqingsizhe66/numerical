@@ -68,4 +68,5 @@ Domain FTCS( Domain T );
 Domain CN( Domain T );
 Domain Jacobi( Domain T );
 Domain GS( Domain T );
+Domain SOR( Domain T );
 void show_sample( Domain T);

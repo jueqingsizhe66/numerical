@@ -70,6 +70,13 @@ int main(int argc, char* argv[])
 			GS(T);
 			return 0;
 		}
+		
+		s = "-SOR";
+		if( s.compare( argv[1] ) == 0 )
+		{
+			SOR(T);
+			return 0;
+		}
 	}
 	else
 		FTCS(T);
