@@ -27,7 +27,7 @@ Domain Jacobi( Domain T )
 		double cpu_time_used;
 		start = clock();
 		
-		
+		// Calculating new Matrix		
 		cout << endl<< "t = "<<n<<endl;
 		T = Told;
 		int iter;
@@ -45,6 +45,7 @@ Domain Jacobi( Domain T )
 						                  + 1 )
 						                + sourceTerm( i, j, k );
 			
+			// Calculating mean value
 			mean = 0;
 			for( int i = 1; i <= T.settings.p_x; i++ )
 				for( int j = 1; j <= T.settings.p_y; j++)
@@ -52,13 +53,18 @@ Domain Jacobi( Domain T )
 						mean += fabs( T.m[i][j][k] - Tnew.m[i][j][k] );
 			mean = mean / ( T.settings.p_x + T.settings.p_y + T.settings.p_z );
 			
+			// Checking mean value, ending iterations if limit met.
 			if( mean < 1e-6 )
 				break;
 			T = Tnew;
 		}
 		cout << "iterations: "<<iter<<" error: "<<mean<<endl;
+
+		// Updates T, and sets periodic BCs if there are any.
 		Told = T;
 		T.updateBC(n);
+
+		// Prints sample
 		show_sample( Tnew );
 	
 	
