@@ -169,7 +169,7 @@ Substituting (8) into (7) and simplifying...
 G^{n+1} = G^n + C G^{n+1}
 \left(
 e^{ik\Delta x} + e^{-ik\Delta x}
-e^{il\Delta x} + e^{-il\Delta x}
++ e^{il\Delta x} + e^{-il\Delta x}
 - 4
 \right)
 \]
@@ -227,8 +227,8 @@ Substituting (10) into (9) and simplifying...
 G^{n+1} = G^n + C G^{n+1}
 \left(
 e^{ik\Delta x} + e^{-ik\Delta x}
-e^{il\Delta x} + e^{-il\Delta x}
-e^{im\Delta x} + e^{-im\Delta x}
++ e^{il\Delta x} + e^{-il\Delta x}
++ e^{im\Delta x} + e^{-im\Delta x}
 - 6
 \right)
 \]
@@ -266,10 +266,10 @@ BECS is unconditionally stable, since C is unbounded.
 
 \begin{equation}
 T_{a}^{\theta+1} = T_{a}^{\theta} + \frac{C}{2} \left(
-T_{a+1,b}^{\theta+1}
+T_{a+1}^{\theta+1}
 - 2T_{a}^{\theta+1}
 + T_{a-1}^{\theta+1}
-+ T_{a+1,b}^{\theta}
++ T_{a+1}^{\theta}
 - 2T_{a}^{\theta}
 + T_{a-1}^{\theta}
 \right)
@@ -281,9 +281,105 @@ T_{a}^{\theta} = G^n e^{-ika\Delta x}
 
 Substituting (12) into (11) and simplifying...
 
+\[
+G^{n+1} = G^n + \frac{C}{2} \left(G^{n+1} + G^n \right)
+\left(
+e^{ik\Delta x} - 2 + e^{-ik\Delta x}
+\right)
+\]
+
+\[
+\frac{G^{n+1}-G^n}{G^{n+1}+G^n} = \frac{C}{2}
+\left(
+2cos(k \Delta x) -  2
+\right)
+\]
+
+C-N 1D is unconditionally stable, since C is unbounded.
+
+\pagebreak
 \section{2-D Crank-Nicolson}
 
+\begin{equation}
+T_{a,b}^{\theta+1} = T_{a,b}^{\theta} + \frac{C}{2} \left(
+T_{a+1,b}^{\theta+1}
++T_{a,b+1}^{\theta+1}
+- 2T_{a,b}^{\theta+1}
++ T_{a-1,b}^{\theta+1}
++ T_{a,b-1}^{\theta+1}
++T_{a+1,b}^{\theta}
++T_{a,b+1}^{\theta}
+- 2T_{a,b}^{\theta}
++ T_{a-1,b}^{\theta}
++ T_{a,b-1}^{\theta}
+\right)
+\end{equation}
+
+\begin{equation}
+T_{a,b}^{\theta} = G^n e^{-ika\Delta x}e^{-ilb\Delta x}
+\end{equation}
+
+Substituting (14) into (13) and simplifying...
+
+\[
+G^{n+1} = G^n + \frac{C}{2} \left(G^{n+1} + G^n \right)
+\left(
+e^{ik\Delta x} + e^{il\Delta x} - 4 + e^{-ik\Delta x} + e^{-il\Delta x}
+\right)
+\]
+
+\[
+\frac{G^{n+1}-G^n}{G^{n+1}+G^n} = \frac{C}{2}
+\left(
+2cos(k \Delta x) + 2cos(l \Delta x) - 4
+\right)
+\]
+
+C-N 1D is unconditionally stable, since C is unbounded.
+
+\pagebreak
 \section{3-D Crank-Nicolson}
 
+\begin{equation}
+T_{a,b,c}^{\theta+1} = T_{a,b,c}^{\theta} + \frac{C}{2} \left(
+T_{a+1,b,c}^{\theta+1}
++T_{a,b+1,c}^{\theta+1}
++T_{a,b,c+1}^{\theta+1}
+- 2T_{a,b}^{\theta+1}
++ T_{a-1,b,c}^{\theta+1}
++ T_{a,b-1,c}^{\theta+1}
++ T_{a,b,c-1}^{\theta+1}
++T_{a+1,b,c}^{\theta}
++T_{a,b+1,c}^{\theta}
++T_{a,b,c+1}^{\theta}
+- 2T_{a,b}^{\theta}
++ T_{a-1,b,c}^{\theta}
++ T_{a,b-1,c}^{\theta}
++ T_{a,b,c-1}^{\theta}
+\right)
+\end{equation}
+
+\begin{equation}
+T_{a,b}^{\theta} = G^n e^{-ika\Delta x}e^{-ilb\Delta x}e^{-imc\Delta x}
+\end{equation}
+
+Substituting (16) into (15) and simplifying...
+
+\[
+G^{n+1} = G^n + \frac{C}{2} \left(G^{n+1} + G^n \right)
+\left(
+e^{ik\Delta x} + e^{il\Delta x} +e^{im\Delta x} - 6
++ e^{-ik\Delta x} + e^{-il\Delta x} + e^{-im\Delta x}
+\right)
+\]
+
+\[
+\frac{G^{n+1}-G^n}{G^{n+1}+G^n} = \frac{C}{2}
+\left(
+2cos(k \Delta x) + 2cos(l \Delta x) + 2cos(m \Delta x) - 6
+\right)
+\]
+
+C-N 1D is unconditionally stable, since C is unbounded.
 
 \end{document}
