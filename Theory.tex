@@ -1,0 +1,289 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[landscape]{geometry}
+\begin{document}
+
+\section{2-D FTCS}
+
+\begin{equation}
+T_{a,b}^{\theta+1} = T_{a,b}^{\theta} + C \left(T_{a+1,b}^{\theta}
++ T_{a-1,b}^{\theta} - 4T_{a,b}^{\theta} + T_{a,b-1}^{\theta}
++ T_{a,b+1}^{\theta} \right)
+\end{equation}
+
+\begin{equation}
+T_{a,b}^{\theta} = G^n e^{-ika\Delta x} e^{-ilb\Delta x}
+\end{equation}
+
+Substituting (2) into (1) and simplifying...
+
+\[
+\frac{G^{n+1}}{G^n} = 1 + C
+\left(
+e^{ik\Delta x} + e^{-ik\Delta x}
++ e^{il\Delta x} + e^{-il\Delta x}
+- 4
+\right)
+\]
+
+\[
+\frac{G^{n+1}}{G^n} = 1 + C
+\left(
+2cos(k \Delta x) + 2cos(l \Delta x) -  4
+\right)
+\]
+
+\[
+-1 \leq 1 - 8C \leq 1
+\]
+
+\[
+-2 \leq - 8C \leq 0
+\]
+
+\[
+0 \leq C \leq \frac{1}{4}
+\]
+
+\pagebreak
+\section{3-D FTCS}
+
+\begin{equation}
+T_{a,b,c}^{\theta+1} = T_{a,b,c}^{\theta} + C \left(
+T_{a+1,b,c}^{\theta}
++ T_{a-1,b,c}^{\theta}
++ T_{a,b+1,c}^{\theta}
++T_{a,b-1,c}^{\theta}
++T_{a,b,c+1}^{\theta}
++T_{a,b,c-1}^{\theta}
+- 6T_{a,b,c}^{\theta}
+\right)
+\end{equation}
+
+\begin{equation}
+T_{a,b}^{\theta} = G^n e^{-ika\Delta x} e^{-ilb\Delta x} e^{-imc\Delta x}
+\end{equation}
+
+Substituting (4) into (3) and simplifying...
+
+\[
+\frac{G^{n+1}}{G^n} = 1 + C
+\left(
+e^{ik\Delta x} + e^{-ik\Delta x}
++ e^{il\Delta x} + e^{-il\Delta x}
++ e^{im\Delta x} + e^{-im\Delta x}
+- 6
+\right)
+\]
+
+\[
+\frac{G^{n+1}}{G^n} = 1 + C
+\left(
+2cos(k \Delta x) + 2cos(l \Delta x) + 2cos(m \Delta x)- 6
+\right)
+\]
+
+\[
+-1 \leq 1 - 12C \leq 1
+\]
+
+\[
+-2 \leq - 12C \leq 0
+\]
+
+\[
+0 \leq C \leq \frac{1}{6}
+\]
+
+\pagebreak
+\section{1-D BECS}
+
+\begin{equation}
+T_{a}^{\theta+1} = T_{a}^{\theta} + C \left(T_{a+1,b}^{\theta+1}
+- 2T_{a}^{\theta+1}
++ T_{a-1}^{\theta+1}
+\right)
+\end{equation}
+
+\begin{equation}
+T_{a}^{\theta} = G^n e^{-ika\Delta x}
+\end{equation}
+
+Substituting (6) into (5) and simplifying...
+
+\[
+G^{n+1} = G^n + C G^{n+1}
+\left(
+e^{ik\Delta x} + e^{-ik\Delta x}
+- 2
+\right)
+\]
+
+\[
+\frac{G^n}{G^{n+1}} = 1 - C
+\left(
+2cos(k \Delta x) -  2
+\right)
+\]
+
+\[
+\frac{G^{n+1}}{G^n} = \frac{1}{1 - C
+\left(
+2cos(k \Delta x) -  2
+\right)}
+\]
+
+\[
+-1 \leq \frac{1}{1 + 4C} \leq 1
+\]
+
+\[
+-1-4C \leq 1 \leq 1+4C
+\]
+
+\[
+-1 \leq 2C \leq 4C
+\]
+
+BECS is unconditionally stable, since C is unbounded.
+
+\pagebreak
+\section{2-D BECS}
+
+\begin{equation}
+T_{a,b}^{\theta+1} = T_{a,b}^{\theta} + C \left(
+T_{a+1,b}^{\theta+1}
+T_{a,b+1}^{\theta+1}
+- 4T_{a,b}^{\theta+1}
++ T_{a-1,b}^{\theta+1}
+T_{a,b-1}^{\theta+1}
+\right)
+\end{equation}
+
+\begin{equation}
+T_{a,b}^{\theta} = G^n e^{-ika\Delta x} e^{-ilb\Delta x}
+\end{equation}
+
+Substituting (8) into (7) and simplifying...
+
+\[
+G^{n+1} = G^n + C G^{n+1}
+\left(
+e^{ik\Delta x} + e^{-ik\Delta x}
+e^{il\Delta x} + e^{-il\Delta x}
+- 4
+\right)
+\]
+
+\[
+\frac{G^n}{G^{n+1}} = 1 + C
+\left(
+2cos(k \Delta x) + 2cos(l \Delta x) -  4
+\right)
+\]
+
+\[
+\frac{G^{n+1}}{G^n} = \frac{1}{1 + C
+\left(
+2cos(k \Delta x) + 2cos(l \Delta x) -  4
+\right)}
+\]
+
+\[
+-1 \leq \frac{1}{1 + 8C} \leq 1
+\]
+
+\[
+-1-8C \leq 1 \leq 1+8C
+\]
+
+\[
+-1 \leq 4C \leq 8C
+\]
+
+BECS is unconditionally stable, since C is unbounded.
+
+\pagebreak
+\section{3-D BECS}
+
+\begin{equation}
+T_{a,b,c}^{\theta+1} = T_{a,b,c}^{\theta} + C \left(
+T_{a+1,b,c}^{\theta+1}
+T_{a,b+1,c}^{\theta+1}
+T_{a,b,c+1}^{\theta+1}
+- 6T_{a,b,c}^{\theta+1}
++ T_{a-1,b,c}^{\theta+1}
+T_{a,b-1,c}^{\theta+1}
+T_{a,b,c-1}^{\theta+1}
+\right)
+\end{equation}
+
+\begin{equation}
+T_{a,b,c}^{\theta} = G^n e^{-ika\Delta x} e^{-ilb\Delta x}e^{-imb\Delta x}
+\end{equation}
+
+Substituting (10) into (9) and simplifying...
+
+\[
+G^{n+1} = G^n + C G^{n+1}
+\left(
+e^{ik\Delta x} + e^{-ik\Delta x}
+e^{il\Delta x} + e^{-il\Delta x}
+e^{im\Delta x} + e^{-im\Delta x}
+- 6
+\right)
+\]
+
+\[
+\frac{G^n}{G^{n+1}} = 1 + C
+\left(
+2cos(k \Delta x) + 2cos(l \Delta x) + 2cos(m \Delta x) - 6
+\right)
+\]
+
+\[
+\frac{G^{n+1}}{G^n} = \frac{1}{1 + C
+\left(
+2cos(k \Delta x) + 2cos(l \Delta x) + 2cos(m \Delta x) -  6
+\right)}
+\]
+
+\[
+-1 \leq \frac{1}{1 + 12C} \leq 1
+\]
+
+\[
+-1-12C \leq 1 \leq 1+12C
+\]
+
+\[
+-1 \leq 6C \leq 12C
+\]
+
+BECS is unconditionally stable, since C is unbounded.
+
+\pagebreak
+\section{1-D Crank-Nicolson}
+
+\begin{equation}
+T_{a}^{\theta+1} = T_{a}^{\theta} + \frac{C}{2} \left(
+T_{a+1,b}^{\theta+1}
+- 2T_{a}^{\theta+1}
++ T_{a-1}^{\theta+1}
++ T_{a+1,b}^{\theta}
+- 2T_{a}^{\theta}
++ T_{a-1}^{\theta}
+\right)
+\end{equation}
+
+\begin{equation}
+T_{a}^{\theta} = G^n e^{-ika\Delta x}
+\end{equation}
+
+Substituting (12) into (11) and simplifying...
+
+\section{2-D Crank-Nicolson}
+
+\section{3-D Crank-Nicolson}
+
+
+\end{document}
