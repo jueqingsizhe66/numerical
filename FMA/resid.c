@@ -12,7 +12,7 @@ rhs[1..n][1..n], while res[1..n][1..n] is returned.
   for (k=2;k<n;k++)
 		for (j=2;j<n;j++) 
 			for (i=2;i<n;i++)
-				res[i][j] = -h2i*
+				res[i][j][k] = -h2i*
 				            (
 										u[i+1][j][k] + u[i-1][j][k]
 										+ u[i][j+1][k] + u[i][j-1][k]

@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 void slvsml(double ***u, double ***rhs)
 /* 
    Solution of the model problem on the coarsest grid, where h = 1

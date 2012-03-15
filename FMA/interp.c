@@ -18,10 +18,10 @@ void interp(double ***uf, double ***uc, int nf)
 		/* Do odd-numbered columns, interpolating vertically.*/
 		for (jf=1;jf<=nf;jf+=2) 
 			for (iif=2;iif<nf;iif+=2) 
-				uf[iif][jf][kf]=0.5*(uf[iif+1][jf]+uf[iif-1][jf]);
+				uf[iif][jf][kf] = 0.5*(uf[iif+1][jf][kf]+uf[iif-1][jf][kf]);
 		/*Do even-numbered columns, interpolating horizontally.*/
 		for (jf=2;jf<nf;jf+=2) 
 			for (iif=1;iif <= nf;iif++) 
-				uf[iif][jf][kf]=0.5*(uf[iif][jf+1]+uf[iif][jf-1]);
+				uf[iif][jf][kf]=0.5*(uf[iif][jf+1][kf]+uf[iif][jf-1][kf]);
 	}
 }

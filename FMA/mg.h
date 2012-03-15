@@ -11,3 +11,4 @@ void relax(double ***u, double ***rhs, int n);
 void resid(double ***res, double ***u, double ***rhs, int n);
 void rstrct(double ***uc, double ***uf, int nc);
 void slvsml(double ***u, double ***rhs);
+void mglin(double ***u, int n, int ncycle);

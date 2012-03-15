@@ -2,13 +2,14 @@
 #include "nrutil.h"
 #include <stdio.h>
 int main(int argc, char **argv){
-  int i,j;
+  //int i,j;
   FILE *outfile;
   double ***f;
-  int n=32;
+  int n=33;
+	int m = (n-1) / 2;
   int ncycle=2;
-  f = d3tensor(1,n,1,n,1,n);
-  f[n/2][n/2][n/2]=1.0;
+	f = d3tensor(1,n,1,n,1,n);
+  f[m][m][m]=1.0;
   //  for (i=2;i<n;++i)
   //  for (j=2;j<n;++j)
   //    f[i][j] = 2.0;

@@ -1,3 +1,5 @@
+#include "mg.h"
+
 void addint(double ***uf, double ***uc, double ***res, int nf)
 /*
   Does coarse-to-fine interpolation and adds result to uf. nf is the fine-grid dimension. The

@@ -568,6 +568,7 @@ long nch,ncl,ndh,ndl,nrh,nrl;
 {
 	long i,j,nrow=nrh-nrl+1,ncol=nch-ncl+1,ndep=ndh-ndl+1;
 	double ***t;
+	printf("babbaganoosh\n");
 
 	/* allocate pointers to pointers to rows */
 	t=(double ***) malloc((unsigned int)((nrow+NR_END)*sizeof(double**)));
