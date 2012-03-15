@@ -2,6 +2,12 @@
 #define NPRE  3
 #define NPOST 3
 #define NGMAX 15
+#define ALPHA 0.001
+#define DT 0.005
+#define DX 0.01
+#define DY 0.01
+#define DZ 0.01 
+#define SOURCETERM 0.01
 
 void addint(double ***uf, double ***uc, double ***res, int nf);
 void copy(double ***aout, double ***ain, int n);
