@@ -39,9 +39,9 @@ Domain SOR( Domain T )
 				for( int j = 1; j <= T.settings.p_y; j++)
 					for( int k = 1; k <= T.settings.p_z; k++ )
 						T.m[i][j][k] =  (1-w) * T.m[i][j][k]
-						                + w * Cx / ( 6 * Cx + 1 ) * ( T.m[i-1][j][k] + T.m[i+1][j][k] )
-						                + w * Cy / ( 6 * Cy + 1 ) * ( T.m[i][j-1][k] + T.m[i][j+1][k] )	
-						                + w * Cz / ( 6 * Cz + 1 ) * ( T.m[i][j][k-1] + T.m[i][j][k+1] )
+						                + w * Cx / ( 2*Cx + 2*Cy + 2*Cz + 1 ) * ( T.m[i-1][j][k] + T.m[i+1][j][k] )
+						                + w * Cy / ( 2*Cx + 2*Cy + 2*Cz + 1 ) * ( T.m[i][j-1][k] + T.m[i][j+1][k] )	
+						                + w * Cz / ( 2*Cx + 2*Cy + 2*Cz + 1 ) * ( T.m[i][j][k-1] + T.m[i][j][k+1] )
 						                + w * Told.m[i][j][k] / ( 2 * T.settings.alpha * T.settings.dt *
 						                  ( 1/pow(T.settings.dx,2) + 1/pow(T.settings.dy,2) + 1/pow(T.settings.dz,2) )
 						                  + 1 )

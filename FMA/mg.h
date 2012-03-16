@@ -1,6 +1,6 @@
 
-#define NPRE  3
-#define NPOST 3
+#define NPRE  2
+#define NPOST 2
 #define NGMAX 15
 #define ALPHA 0.001
 #define DT 0.005
