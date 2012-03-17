@@ -12,9 +12,7 @@
 #define NSTEPS 100
 
 int relax_scheme;
-double *** u_old;
-double *** u_new;
-
+int num_timesteps;
 
 void addint(double ***uf, double ***uc, double ***res, int nf);
 void copy(double ***aout, double ***ain, int n);
@@ -25,3 +23,4 @@ void resid(double ***res, double ***u, double ***rhs, int n);
 void rstrct(double ***uc, double ***uf, int nc);
 void slvsml(double ***u, double ***rhs);
 void mglin(double ***u, int n, int ncycle);
+void inv( double *** u, int n );

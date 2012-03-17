@@ -23,14 +23,6 @@ void relax(double ***u, double ***rhs, int n)
 	double Cy = ( ALPHA * DT ) / ( DY * DY );
 	double Cz = ( ALPHA * DT ) / ( DZ * DZ );
 
-	
-
-	// Different relaxation schemes are dependent on the global variable
-	// relax_scheme.
-	// 1 : Red-Black Gauss-Seidel
-	// 2 : Gauss-Seidel
-	// 3 : Jacobi
-
 	// Red-Black Gauss-Seidel
 	if( relax_scheme == 1 )
 	{
@@ -91,7 +83,8 @@ void relax(double ***u, double ***rhs, int n)
 	// Jacobi
 	else
 	{
-		u = u_old;
+		u = rhs;
+		double *** u_new = u;
 		int iter;
 		double mean;
 		for( iter = 1; i <= MAX_ITER; iter++)
@@ -103,7 +96,7 @@ void relax(double ***u, double ***rhs, int n)
 						u_new[i][j][k]=  Cx / ( 1 + 2*Cx + 2*Cy + 2*Cz ) * ( u[i+1][j][k] + u[i-1][j][k] )
 											 + Cy / ( 1 + 2*Cx + 2*Cy + 2*Cz ) * ( u[i][j+1][k] + u[i][j-1][k] )
 											 + Cz / ( 1 + 2*Cx + 2*Cy + 2*Cz ) * ( u[i][j][k+1] + u[i][j][k-1] )
-											 - u_old[i][j][k] / (2 * ALPHA * DT *
+											 - rhs[i][j][k] / (2 * ALPHA * DT *
 											 ( 1/(DX * DX) + 1/(DY * DY) + 1/(DZ * DZ) ) + 1 )
 											 + SOURCETERM ;
 					}
@@ -119,11 +112,22 @@ void relax(double ***u, double ***rhs, int n)
 			// checking mean value, ending iterations if limit met
 			if( mean < 1e-6)
 			{
+				u = u_new;
 				break;
 			}
 			u = u_new;
 		}
-		u_old = u;
-		rhs = u_old;
+		rhs = u;
 	}
+}
+
+void inv( double *** u, int n )
+{
+	for( int i=2; i < n; i++ )
+		for( int j = 2; j < n; j++ )
+			for( int k = 2; k < n; k++ )
+			{
+				if( u[i][j][k] < 0.0 )
+					u[i][j][k] = -1 * u[i][j][k] ;
+			}
 }

@@ -5,18 +5,34 @@
 #include <time.h>
 #include <math.h>
 
-// global variable that defines which relaxation scheme to use
-// 1 : Red-Black Gauss-Siedel
-// 2 : Gauss-Siedel
-// 3 : Jacobi
 
 int main(int argc, char **argv){
+	
+	// global variable that defines which relaxation scheme to use
+	// 1 : Red-Black Gauss-Siedel
+	// 2 : Gauss-Siedel
+	// 3 : Jacobi
 	relax_scheme = 3;
+
+	if( relax_scheme == 1)
+		printf("Red-Black Gauss-Siedel Sovler Selected...\n");
+	else if( relax_scheme == 2 )
+		printf("Regular Gauss-Siedel Solver Selected...\n");
+	else
+		printf("Jacobi Solver Selected...\n");
+
+	// global variable to define how many timesteps to do
+	// ( size of timestep, alpha, etc defined in header)
+	num_timesteps = 1;
+	printf("Program will simulate %d timestep(s)...\n", num_timesteps);
+	
 	FILE *outfile;
   double ***f;
   int n=33;
+	printf("Problem size n^3, where n = %d\n", n-1);
 	int m = (n-1) / 2;
   int ncycle=2; // number of V cycles
+	printf("Each timestep uses %d V cycles.\n", ncycle);
 	f = d3tensor(1,n,1,n,1,n);
 	
 	// initializes to gaussian + noise
@@ -28,26 +44,12 @@ int main(int argc, char **argv){
 				             * ( 0.99 + ( rand()%3) / 100.0 );
 			}
  
- 	// Setting global u_old and u_new matrices for timestep computations
-	u_new = f;
-	u_old = f; 
-	
-	// Clock and timing init.
-	clock_t start, end;
-	double cpu_time_used;
-	start = clock();	
-	
-	// Running the FMA
-	int num_timesteps = 100;
-	for( int i = 1; i <= num_timesteps; i++)
-		mglin(f,n,ncycle);
-  
-	// Clock and timing finish.
-	end = clock();
-	cpu_time_used = ( (double) (end-start) ) / CLOCKS_PER_SEC;
-	printf("Time used: %lf seconds\n", cpu_time_used);
-	
+	// run program. timesteps handled in mglin.c	
+	mglin(f,n,ncycle);
+
+	inv(f,n);
 	outfile = fopen("soln.dat", "w");
   fwrite(&f[1][1][1],sizeof(double),n*n*n,outfile);
   fclose(outfile);
 }
+

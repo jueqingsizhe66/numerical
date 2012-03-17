@@ -1,4 +1,5 @@
 #include "mg.h"
+#include <math.h>
 
 void slvsml(double ***u, double ***rhs)
 /* 

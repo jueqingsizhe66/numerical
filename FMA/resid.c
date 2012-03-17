@@ -1,5 +1,5 @@
 #include "mg.h"
-
+#include <math.h>
 void resid(double ***res, double ***u, double ***rhs, int n)
 /*
 Returns minus the residual for the model problem. Input quantities are u[1..n][1..n] and
@@ -27,7 +27,7 @@ rhs[1..n][1..n], while res[1..n][1..n] is returned.
 											 + Cz / ( 1 + 2*Cx + 2*Cy + 2*Cz ) * ( u[i][j][k+1] + u[i][j][k-1] )
 											 - rhs[i][j][k] / (2 * ALPHA * DT *
 											 ( 1/(DX * DX) + 1/(DY * DY) + 1/(DZ * DZ) ) + 1 )
-											 + SOURCETERM ;
+											 + SOURCETERM  ;
   }
 	// For Jacobi
 	else

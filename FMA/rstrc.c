@@ -1,3 +1,5 @@
+#include <math.h>
+
 void rstrct(double ***uc, double ***uf, int nc)
 /* 
    Half-weighting restriction. nc is the coarse-grid dimension. The fine-grid solution is input in
