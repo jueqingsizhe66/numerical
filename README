@@ -1,3 +1,27 @@
+FMA UPDATE
+
+All code for Homework 4 is contained within the FMA Folder. The FMA folder
+has its own Makefile, and it totally separate from the code I've written
+so far. This was because I did HW1-3 in c++, without using nrutils. For HW4,
+since the starting code had nrutils really engrained into it, I decided to just
+modify the existing C code we were given rather than try to rewrite the whole
+thing into C++ using vectors etc. Anyway, the result is my HW4 code is all
+in the FMA folder.
+
+Compilation for FMA is all done with the FMA makefile.
+
+Settings can be tweaked by adjusting the macro variables in mg.h. Other settings,
+like number of timesteps and problem size, are adjusted in main.c by changing
+the labeled variables. 
+
+**output**
+
+Output for my program is done into the soln.dat similar to how the original 
+2-d code we were given is done. I adjusted the matlab script to pull a slice
+from the middle of the 3-d matrix and display that. Simply run the 
+easier_to_read.m matlab program to display the program output.
+
+
 SETUP
 
 Basic variables and settings can be altered in the main.cpp

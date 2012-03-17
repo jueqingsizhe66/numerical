@@ -23,7 +23,7 @@ int main(int argc, char **argv){
 
 	// global variable to define how many timesteps to do
 	// ( size of timestep, alpha, etc defined in header)
-	num_timesteps = 1;
+	num_timesteps = 100;
 	printf("Program will simulate %d timestep(s)...\n", num_timesteps);
 	
 	FILE *outfile;
