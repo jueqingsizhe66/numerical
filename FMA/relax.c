@@ -124,5 +124,6 @@ void relax(double ***u, double ***rhs, int n)
 			u = u_new;
 		}
 		u_old = u;
+		rhs = u_old;
 	}
 }
