@@ -22,12 +22,12 @@ int main(int argc, char **argv){
 
 	// global variable to define how many timesteps to do
 	// ( size of timestep, alpha, etc defined in header)
-	num_timesteps = 1;
-	printf("Program will simulate %d timestep(s)...\n", num_timesteps);
+	num_timesteps = 3;
+	printf("Program will simulate %d timestep(s), with dt = %lf \n", num_timesteps, DT);
 	
 	FILE *outfile;
   double ***f;
-  int n=257; // Problem size. must be of the form 2^n + 1.
+  int n=33; // Problem size. must be of the form 2^n + 1.
 	printf("Problem size n^3, where n = %d\n", n-1);
 	int m = (n-1) / 2;
   int ncycle=2; // number of V cycles
