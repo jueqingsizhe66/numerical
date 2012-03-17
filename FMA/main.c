@@ -27,7 +27,10 @@ int main(int argc, char **argv){
 				f[i][j][k] = 500 * exp ( - ( pow( i-n/2, 2 ) + pow( j-n/2, 2) + pow( k-n/2, 2) ))
 				             * ( 0.99 + ( rand()%3) / 100.0 );
 			}
-  
+ 
+ 	// Setting global u_old and u_new matrices for timestep computations
+	u_new = f;
+	u_old = f; 
 	
 	// Clock and timing init.
 	clock_t start, end;
@@ -35,7 +38,9 @@ int main(int argc, char **argv){
 	start = clock();	
 	
 	// Running the FMA
-	mglin(f,n,ncycle);
+	int num_timesteps = 100;
+	for( int i = 1; i <= num_timesteps; i++)
+		mglin(f,n,ncycle);
   
 	// Clock and timing finish.
 	end = clock();

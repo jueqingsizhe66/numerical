@@ -9,9 +9,12 @@
 #define DZ 0.01 
 #define SOURCETERM 0.01
 #define MAX_ITER 1000
-
+#define NSTEPS 100
 
 int relax_scheme;
+double *** u_old;
+double *** u_new;
+
 
 void addint(double ***uf, double ***uc, double ***res, int nf);
 void copy(double ***aout, double ***ain, int n);

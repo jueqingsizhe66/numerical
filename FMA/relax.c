@@ -23,6 +23,7 @@ void relax(double ***u, double ***rhs, int n)
 	double Cy = ( ALPHA * DT ) / ( DY * DY );
 	double Cz = ( ALPHA * DT ) / ( DZ * DZ );
 
+	
 
 	// Different relaxation schemes are dependent on the global variable
 	// relax_scheme.
@@ -90,20 +91,19 @@ void relax(double ***u, double ***rhs, int n)
 	// Jacobi
 	else
 	{
+		u = u_old;
 		int iter;
 		double mean;
-		double *** u_new = u;
-		double *** u_old = u;
 		for( iter = 1; i <= MAX_ITER; iter++)
 		{
 			for( int i = 2; i < n; i++ )
 				for( int j = 2; j < n; j++)
 					for( int k = 2; k < n; k++ )
 					{
-						u[i][j][k]=  Cx / ( 1 + 2*Cx + 2*Cy + 2*Cz ) * ( u[i+1][j][k] + u[i-1][j][k] )
+						u_new[i][j][k]=  Cx / ( 1 + 2*Cx + 2*Cy + 2*Cz ) * ( u[i+1][j][k] + u[i-1][j][k] )
 											 + Cy / ( 1 + 2*Cx + 2*Cy + 2*Cz ) * ( u[i][j+1][k] + u[i][j-1][k] )
 											 + Cz / ( 1 + 2*Cx + 2*Cy + 2*Cz ) * ( u[i][j][k+1] + u[i][j][k-1] )
-											 - rhs[i][j][k] / (2 * ALPHA * DT *
+											 - u_old[i][j][k] / (2 * ALPHA * DT *
 											 ( 1/(DX * DX) + 1/(DY * DY) + 1/(DZ * DZ) ) + 1 )
 											 + SOURCETERM ;
 					}
@@ -123,5 +123,6 @@ void relax(double ***u, double ***rhs, int n)
 			}
 			u = u_new;
 		}
+		u_old = u;
 	}
 }
