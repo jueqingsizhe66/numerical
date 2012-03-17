@@ -1,7 +1,7 @@
 main : main.o mglin.o addint.o relax.o resid.o rstrc.o interp.o nrutil.o slvsml.o
-	gcc  -std=c99 -O3 -o main main.o mglin.o addint.o relax.o resid.o rstrc.o interp.o nrutil.o slvsml.o
+	gcc  -std=c99 -O3 -o main main.o mglin.o addint.o relax.o resid.o rstrc.o interp.o nrutil.o slvsml.o -lm
 main.o : main.c nrutil.h
-	gcc  -std=c99 -c -I. main.c
+	gcc  -std=c99 -c -I. main.c -lm
 mglin.o : mglin.c nrutil.h mg.h
 	gcc  -std=c99 -c -I. mglin.c
 addint.o : addint.c

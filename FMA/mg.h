@@ -8,6 +8,10 @@
 #define DY 0.01
 #define DZ 0.01 
 #define SOURCETERM 0.01
+#define MAX_ITER 1000
+
+
+int relax_scheme;
 
 void addint(double ***uf, double ***uc, double ***res, int nf);
 void copy(double ***aout, double ***ain, int n);
