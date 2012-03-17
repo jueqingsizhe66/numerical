@@ -91,7 +91,7 @@ void relax(double ***u, double ***rhs, int n)
 	// Jacobi
 	else
 	{
-		u = u_old;
+		u = rhs;
 		int iter;
 		double mean;
 		for( iter = 1; i <= MAX_ITER; iter++)
@@ -103,7 +103,7 @@ void relax(double ***u, double ***rhs, int n)
 						u_new[i][j][k]=  Cx / ( 1 + 2*Cx + 2*Cy + 2*Cz ) * ( u[i+1][j][k] + u[i-1][j][k] )
 											 + Cy / ( 1 + 2*Cx + 2*Cy + 2*Cz ) * ( u[i][j+1][k] + u[i][j-1][k] )
 											 + Cz / ( 1 + 2*Cx + 2*Cy + 2*Cz ) * ( u[i][j][k+1] + u[i][j][k-1] )
-											 - u_old[i][j][k] / (2 * ALPHA * DT *
+											 - rhs[i][j][k] / (2 * ALPHA * DT *
 											 ( 1/(DX * DX) + 1/(DY * DY) + 1/(DZ * DZ) ) + 1 )
 											 + SOURCETERM ;
 					}
@@ -123,6 +123,6 @@ void relax(double ***u, double ***rhs, int n)
 			}
 			u = u_new;
 		}
-		u_old = u;
+		rhs = u;
 	}
 }
