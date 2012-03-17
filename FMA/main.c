@@ -11,10 +11,10 @@
 // 3 : Jacobi
 
 int main(int argc, char **argv){
-	relax_scheme = 2;
+	relax_scheme = 3;
 	FILE *outfile;
   double ***f;
-  int n=257;
+  int n=33;
 	int m = (n-1) / 2;
   int ncycle=2; // number of V cycles
 	f = d3tensor(1,n,1,n,1,n);
