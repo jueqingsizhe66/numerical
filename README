@@ -5,8 +5,7 @@ has its own Makefile, and it totally separate from the code I've written
 so far. This was because I did HW1-3 in c++, without using nrutils. For
 HW4, since the starting code had nrutils really engrained into it, I
 decided to just modify the existing C code we were given rather than
-try to rewrite the whole thing into C++ using vectors etc. Anyway,
-the result is my HW4 code is all in the FMA folder.
+try to rewrite the whole thing into C++ using vectors etc.
 
 **COMPILATION AND RUNNING**
 
