@@ -5,7 +5,6 @@
 #include <time.h>
 #include <math.h>
 
-
 int main(int argc, char **argv){
 	
 	// global variable that defines which relaxation scheme to use
@@ -23,12 +22,12 @@ int main(int argc, char **argv){
 
 	// global variable to define how many timesteps to do
 	// ( size of timestep, alpha, etc defined in header)
-	num_timesteps = 100;
+	num_timesteps = 5;
 	printf("Program will simulate %d timestep(s)...\n", num_timesteps);
 	
 	FILE *outfile;
   double ***f;
-  int n=33;
+  int n=33; // Problem size. must be of the form 2^n + 1.
 	printf("Problem size n^3, where n = %d\n", n-1);
 	int m = (n-1) / 2;
   int ncycle=2; // number of V cycles
