@@ -11,7 +11,7 @@ int main(int argc, char **argv){
 	// 1 : Red-Black Gauss-Siedel
 	// 2 : Gauss-Siedel
 	// 3 : Jacobi
-	relax_scheme = 3;
+	relax_scheme = 1;
 
 	if( relax_scheme == 1)
 		printf("Red-Black Gauss-Siedel Sovler Selected...\n");
@@ -22,12 +22,12 @@ int main(int argc, char **argv){
 
 	// global variable to define how many timesteps to do
 	// ( size of timestep, alpha, etc defined in header)
-	num_timesteps = 5;
+	num_timesteps = 1;
 	printf("Program will simulate %d timestep(s)...\n", num_timesteps);
 	
 	FILE *outfile;
   double ***f;
-  int n=33; // Problem size. must be of the form 2^n + 1.
+  int n=257; // Problem size. must be of the form 2^n + 1.
 	printf("Problem size n^3, where n = %d\n", n-1);
 	int m = (n-1) / 2;
   int ncycle=2; // number of V cycles
