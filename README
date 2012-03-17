@@ -1,4 +1,4 @@
-FMA HW4
+////////////////////////  FMA HW4  ///////////////////////////////////////
 
 All code for Homework 4 is contained within the FMA Folder. The FMA folder
 has its own Makefile, and it totally separate from the code I've written
@@ -8,7 +8,7 @@ decided to just modify the existing C code we were given rather than
 try to rewrite the whole thing into C++ using vectors etc. Anyway,
 the result is my HW4 code is all in the FMA folder.
 
-** COMPILATION AND RUNNING *
+**COMPILATION AND RUNNING**
 
 Compilation for FMA is all done with the FMA makefile.
 
@@ -30,7 +30,19 @@ original 2-d code we were given is done. I adjusted the matlab script to
 pull a slice from the middle of the 3-d matrix and display that. Simply
 run the easier_to_read.m matlab program to display the program output.
 
-///////////////////////// HW 2 + 3 //////////////////////////////////
+**TIMING NOTES**
+
+All the timing data is in the 2 page pdf "HW4_graphs.pdf" file. It's
+clear that FMA is much faster than SOR. The various methods within FMA
+itself don't have quite as much variance, but I found that regular GS
+was fastest.
+
+For the SOR, I used my old program which was in C++ and used vectors.
+This means its not really a perfect comparison. However, the differences
+are really pretty negligible, and the performance gains from using
+multigrid are big enough that its clear FMA is much faster than SOR.
+
+///////////////////////// HW 2 + 3 //////////////////////////////////////
 
 SETUP
 
